@@ -14,3 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\Main::class, 'home'])->name("home");
+Route::get('/new_task', [\App\Http\Controllers\Main::class, 'new_task'])->name("new_task");
