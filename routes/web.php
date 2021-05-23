@@ -20,4 +20,7 @@ Route::get('/done_task/{id}', [\App\Http\Controllers\Main::class, 'done_task'])-
 Route::get('/undone_task/{id}', [\App\Http\Controllers\Main::class, 'undone_task'])->name("undone_task");
 Route::get('/edit_task/{id}', [\App\Http\Controllers\Main::class, 'edit_task'])->name("edit_task");
 Route::post('/edit_task_submit/{id}', [\App\Http\Controllers\Main::class, 'edit_task_submit'])->name("edit_task_submit");
+Route::get('/delete_task/{id}', [\App\Http\Controllers\Main::class, 'delete_task'])->name("delete_task");
+Route::get('/show_deleted_tasks', [\App\Http\Controllers\Main::class, 'show_deleted_tasks'])->name("show_deleted_tasks");
+Route::get('/undelete_task/{id}', [\App\Http\Controllers\Main::class, 'undelete_task'])->name("undelete_task");
 

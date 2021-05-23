@@ -84,4 +84,28 @@ class Main extends Controller
 
         return redirect()->route("home");
     }
+
+    public function delete_task($id)
+    {
+        $task = Task::find($id);
+        $task->delete();
+
+        return redirect()->route("home");
+    }
+
+    public function show_deleted_tasks()
+    {
+        //get invisible tasks
+        $tasks = Task::orderBy('created_at', 'desc')->where("visible", 1)->onlyTrashed()->get();
+
+        return view("home", ["tasks" => $tasks]);
+    }
+
+    public function undelete_task($id)
+    {
+        $task = Task::withTrashed()->find($id);
+        $task->restore();
+
+        return redirect()->route("home");
+    }
 }
