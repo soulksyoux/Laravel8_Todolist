@@ -29,8 +29,13 @@
                                 <td class="text-center"><?= !empty($task->done) ? $task->done : "No"?></td>
                                 <td>{{$task->created_at}}</td>
                                 <td>
-                                    <?= empty($task->done) ? "<a class='btn btn-success btn-sm' href=''><i class='fas fa-check text-light'></i></a>" : "<a class='btn btn-danger btn-sm' href=''><i class='fas fa-times text-light'></i></a>"?>
-                                    <a class="btn btn-primary btn-sm" chref=""><i class='fas fa-edit text-light'></i></a>
+                                    <?php if(empty($task->done)): ?>
+                                        <a class='btn btn-success btn-sm' href='{{route("done_task", ["id" => $task->id])}}'><i class='fas fa-check text-light'></i></a>
+                                    <?php else: ?>
+                                        <a class='btn btn-danger btn-sm' href='{{route("undone_task", ["id" => $task->id])}}'><i class='fas fa-times text-light'></i></a>
+                                    <?php endif; ?>
+
+                                    <a class="btn btn-primary btn-sm" href=""><i class='fas fa-edit text-light'></i></a>
                                     <a class="btn btn-primary btn-sm" href=""><i class='fas fa-trash text-light'></i></a>
                                 </td>
                             </tr>
@@ -40,7 +45,7 @@
                     </table>
 
                 @else
-                    echo "sem tasks";
+                    <p>Sem tasks para mostrar...</p>
                 @endif
             </div>
         </div>

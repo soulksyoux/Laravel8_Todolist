@@ -15,6 +15,9 @@ $(document).ready( function () {
             "loadingRecords": "Loading...",
             "processing":     "Processing...",
             "search":         "Search:",
-        }
+        },
+        "order": [[ 3, "desc" ]],
     } );
 } );
+
+
