@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use Faker\Provider\ka_GE\DateTime;
 use Illuminate\Http\Request;
 
 class Main extends Controller
@@ -51,6 +52,36 @@ class Main extends Controller
         $task = Task::find($id);
         $task->done = null;
         $task->save();
+        return redirect()->route("home");
+    }
+
+    public function edit_task($id)
+    {
+        $task = Task::find($id);
+        if($task->done != null) {
+            return redirect()->route("home");
+        }
+
+        return view("edit_task", ['id' => $id, 'task' => $task->task]);
+    }
+
+    public function edit_task_submit(Request $request, $id)
+    {
+        //valida se o metodo é um post
+        if(!$request->isMethod("post")) {
+            return redirect()->route("home");
+        }
+
+        //valida se existe um campo de input do form chamado task
+        if(!$request->input('task')) {
+            return redirect()->route("home");
+        }
+
+        $task = Task::find($id);
+        $task->task = $request->input('task');
+        $task->updated_at = new \DateTime();
+        $task->save();
+
         return redirect()->route("home");
     }
 }

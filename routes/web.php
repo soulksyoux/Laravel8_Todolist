@@ -18,4 +18,6 @@ Route::get('/new_task', [\App\Http\Controllers\Main::class, 'new_task'])->name("
 Route::post('/new_task_submit', [\App\Http\Controllers\Main::class, 'new_task_submit'])->name("new_task_submit");
 Route::get('/done_task/{id}', [\App\Http\Controllers\Main::class, 'done_task'])->name("done_task");
 Route::get('/undone_task/{id}', [\App\Http\Controllers\Main::class, 'undone_task'])->name("undone_task");
+Route::get('/edit_task/{id}', [\App\Http\Controllers\Main::class, 'edit_task'])->name("edit_task");
+Route::post('/edit_task_submit/{id}', [\App\Http\Controllers\Main::class, 'edit_task_submit'])->name("edit_task_submit");
 

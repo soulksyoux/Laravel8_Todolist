@@ -24,6 +24,7 @@
                         </thead>
                         <tbody>
                             @foreach($tasks as $task)
+
                             <tr>
                                 <td>{{$task->task}}</td>
                                 <td class="text-center"><?= !empty($task->done) ? $task->done : "No"?></td>
@@ -31,12 +32,14 @@
                                 <td>
                                     <?php if(empty($task->done)): ?>
                                         <a class='btn btn-success btn-sm' href='{{route("done_task", ["id" => $task->id])}}'><i class='fas fa-check text-light'></i></a>
+                                        <a class="btn btn-primary btn-sm" href='{{route("edit_task", ["id" => $task->id])}}'><i class='fas fa-edit text-light'></i></a>
                                     <?php else: ?>
                                         <a class='btn btn-danger btn-sm' href='{{route("undone_task", ["id" => $task->id])}}'><i class='fas fa-times text-light'></i></a>
+                                        <button disabled class="btn btn-secondary btn-sm" href=''><i class='fas fa-edit text-light'></i></button>
                                     <?php endif; ?>
 
-                                    <a class="btn btn-primary btn-sm" href=""><i class='fas fa-edit text-light'></i></a>
-                                    <a class="btn btn-primary btn-sm" href=""><i class='fas fa-trash text-light'></i></a>
+
+                                    <a class="btn btn-primary btn-sm" href='{{route("delete_task", ["id" => $task->id])}}'><i class='fas fa-trash text-light'></i></a>
                                 </td>
                             </tr>
                             @endforeach
